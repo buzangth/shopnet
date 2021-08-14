@@ -1,8 +1,7 @@
 namespace Core.Entities
 {
-    public class User : BaseEntity
+    public class ProductType : BaseEntity
     {
-       
 
         public string Name { get; set; }
     }
