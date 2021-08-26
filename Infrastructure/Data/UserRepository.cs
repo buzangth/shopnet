@@ -4,7 +4,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data.Migrations
+namespace Infrastructure.Data
 {
     public class UserRepository : IUserRepository
     {
