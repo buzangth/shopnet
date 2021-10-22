@@ -8,34 +8,34 @@ namespace API.Controllers
 
 
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    
+    public class UsersController : BaseApiController
     {
-       private readonly IUserRepository _repo;
+       private readonly IGenericRepository<User> _userRepo;
 
-        public UsersController(IUserRepository repo)
+        public UsersController(IGenericRepository<User> userRepo)
         {
-             _repo = repo;
+             _userRepo = userRepo;
         }
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetUsers()
+        public async Task<ActionResult<IReadOnlyList<User>>>  GetUsers()
         {
-            var users = await _repo.GetUsersAsync();
+            var users = await _userRepo.ListAllAsync();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            return await _repo.GetUserByIdAsync(id);
+            var user = await _userRepo.GetByIdAsync(id);
+            return Ok(user);
         }
         
 
-        [HttpPost]
-        public async Task<User> AppUser(User user){
-            return await _repo.AddUserAsync(user);
-        }
+        // [HttpPost]
+        // public async Task<User> AppUser(User user){
+        //     return await _repo.AddUserAsync(user);
+        // }
 
         
     }
