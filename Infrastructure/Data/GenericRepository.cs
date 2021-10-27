@@ -52,5 +52,12 @@ namespace Infrastructure.Data
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(),spec);
         }
+
+       
+
+        // public async Task<T> Add(T t)
+        // {
+        //    await _context.AddAsync()
+        // }
     }
 }
