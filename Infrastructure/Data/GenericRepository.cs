@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,6 +6,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Infrastructure.Data
 {
@@ -53,7 +55,17 @@ namespace Infrastructure.Data
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(),spec);
         }
 
-       
+        public async Task<T> Add(T t)
+        {
+           await _context.Set<T>().AddAsync(t);
+           await _context.SaveChangesAsync();
+
+           return t;
+            
+        }
+
+
+
 
         // public async Task<T> Add(T t)
         // {

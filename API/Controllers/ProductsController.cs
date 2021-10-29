@@ -52,9 +52,9 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        // public async Task<Product> AppProduct(Product product){
-        //   //  return await _productsRepo.AddProductAsync(product);
-        // }
+        public async Task<Product> AddProduct(Product product){
+          return await _productsRepo.Add(product);
+        }
 
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrand()

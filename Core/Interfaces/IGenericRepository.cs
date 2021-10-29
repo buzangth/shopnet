@@ -9,7 +9,7 @@ namespace Core.Interfaces
     {
         Task<T> GetByIdAsync(int id);
 
-        // Task<T> AddNew(T t);
+        Task<T> Add(T t);
 
         Task<IReadOnlyList<T>> ListAllAsync();
 
