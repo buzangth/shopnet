@@ -31,6 +31,27 @@ namespace API.Controllers
             _productTYpeRepo = productTYpeRepo;
         }
 
+        [HttpPost]
+        public async Task<Product> AddProduct(Product product)
+        {
+          return await _productsRepo.Add(product);
+        }
+
+
+        [HttpPut("{id}")]
+
+        public async Task<Product> UpdateProduct(int id, Product product)
+        {
+            if(id != product.Id)
+            {
+                return null;
+            }
+
+            await _productsRepo.Update(product);
+            return product;
+        }
+
+
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetProducts()
         {
@@ -51,11 +72,7 @@ namespace API.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<Product> AddProduct(Product product){
-          return await _productsRepo.Add(product);
-        }
-
+        
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrand()
         {

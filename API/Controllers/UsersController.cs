@@ -28,14 +28,25 @@ namespace API.Controllers
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _userRepo.GetByIdAsync(id);
-            return Ok(user);
+            return user;
         }
         
 
-        // [HttpPost]
-        // public async Task<User> AppUser(User user){
-        //     return await _repo.AddUserAsync(user);
-        // }
+         [HttpPost]
+        public async Task<User> AddUser(User user){
+          return await _userRepo.Add(user);
+        }
+
+         public async Task<User> UpdateUser(int id, User user)
+        {
+            if(id != user.Id)
+            {
+                return null;
+            }
+
+            await _userRepo.Update(user);
+            return user;
+        }
 
         
     }

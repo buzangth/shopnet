@@ -64,6 +64,29 @@ namespace Infrastructure.Data
             
         }
 
+        public async Task<T> Update(T t)
+        {
+            _context.Entry(t).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return t;
+
+        }
+
+        public async Task<T> DeleteByIdAsync(int id)
+        {
+            var t = await _context.Set<T>().FindAsync(id);
+
+            if(t == null)
+            {
+                return t;
+            }
+
+            _context.Set<T>().Remove(t);
+
+            return t;
+
+        }
+
 
 
 
