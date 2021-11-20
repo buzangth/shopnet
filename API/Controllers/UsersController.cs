@@ -37,6 +37,7 @@ namespace API.Controllers
           return await _userRepo.Add(user);
         }
 
+        [HttpPut("{id}")]
          public async Task<User> UpdateUser(int id, User user)
         {
             if(id != user.Id)
